@@ -1,5 +1,6 @@
 package com.alticci.domain;
 
+import com.alticci.exception.BadRequestException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -7,16 +8,16 @@ import lombok.Setter;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import java.math.BigInteger;
 import java.util.List;
 
 public class Sequence {
     @Getter
-    @Min(0)
-    @Max(2147483647)
     private Integer number;
 
     public Sequence(Integer number) {
         this.number = number;
+        validation();
     }
 
     public int getNumberCalculated (){
@@ -33,6 +34,14 @@ public class Sequence {
             res = 1;
 
         return res;
+    }
+
+    public void validation(){
+        if(number < 0)
+            throw new BadRequestException("Input number is upper than zero");
+        if(number > 78)
+            throw new BadRequestException("Input number is lower or equals than 78");
+
     }
 
 }

@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  app:
+    container_name: alticci-sequence
+    image: alticci-sequence
+    build:
+      context: .
+    ports:
+      - 8081:8081
