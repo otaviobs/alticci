@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Legend from '../components/Legend';
 import Navbar from "../components/Navbar";
 import Number from "../components/Number";
 
@@ -11,6 +12,7 @@ export default function Home() {
       <Navbar />
 
       <main>
+        <Legend />
         <Number />
       </main>
     </div>

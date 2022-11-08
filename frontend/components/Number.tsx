@@ -6,7 +6,7 @@ const Number = () => {
     const [message, setMessage] = useState("");
     
 
-    const checkNumber = async (e) => {
+    const checkNumber = async (e: any) => {
         e.preventDefault();
 
         if(index < 0 || index > 78){
@@ -42,7 +42,7 @@ const Number = () => {
                         max="78"
                         step="1"
                         value={index}
-                        onChange={(e) => setIndex(e.target.value)}                        
+                        onChange={(e: any) => setIndex(e.target.value)}                        
                         className='h-10 w-96 border mt-2 px-2 py-2'></input>
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
