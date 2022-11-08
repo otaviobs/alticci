@@ -1,26 +1,33 @@
 package com.alticci.service;
 
 import com.alticci.domain.Sequence;
+import com.alticci.dto.SequenceDto;
 import com.alticci.exception.BadRequestException;
 import com.alticci.exception.NotFoundException;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class SequenceService {
-    public Integer getSequenceByNumber(Integer number) {
+    public SequenceDto getSequenceByNumber(Integer number) {
         Sequence sequence = new Sequence(number);
-        sequence.validation();
-        return sequence.getNumberCalculated();
+
+        SequenceDto sequenceDto = new SequenceDto();
+        sequenceDto.setNumber(sequence.getNumberCalculated());
+        return sequenceDto;
     }
 
-    public List<Integer> getListDescSequence(Integer beginNumber, Integer endNumber) {
-        List<Integer> list = new ArrayList<>();
+    public List<SequenceDto> getListDescSequence(Integer beginNumber, Integer endNumber) {
+        List<SequenceDto> list = new ArrayList<>();
         for (int i = beginNumber; i <= endNumber; i++){
             Sequence sequence = new Sequence(i);
-            list.add(sequence.getNumberCalculated());
+            SequenceDto sequenceDto = new SequenceDto();
+            sequenceDto.setNumber(sequence.getNumberCalculated());
+            list.add(sequenceDto);
         }
         return list;
     }

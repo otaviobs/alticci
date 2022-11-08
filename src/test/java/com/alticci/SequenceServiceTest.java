@@ -1,5 +1,6 @@
 package com.alticci;
 
+import com.alticci.domain.Sequence;
 import com.alticci.exception.BadRequestException;
 import com.alticci.service.SequenceService;
 import org.junit.jupiter.api.BeforeEach;
@@ -10,38 +11,40 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class SequenceServiceTest {
 
-    private SequenceService sequenceService;
-
-    @BeforeEach
-    public void initial(){
-        this.sequenceService = new SequenceService();
-    }
-
     @Test
     public void getSequenceNumberZero(){
-        assertEquals(0, sequenceService.getSequenceByNumber(0));
+        Sequence sequence = new Sequence(0);
+        assertEquals(0, sequence.getNumberCalculated());
     }
 
     @Test
     public void getSequenceNumberOne(){
-        assertEquals(1, sequenceService.getSequenceByNumber(1));
+        Sequence sequence = new Sequence(1);
+        assertEquals(1, sequence.getNumberCalculated());
     }
 
     @Test
     public void getSequenceNumberTwo(){
-        assertEquals(1, sequenceService.getSequenceByNumber(2));
+        Sequence sequence = new Sequence(2);
+        assertEquals(1, sequence.getNumberCalculated());
     }
 
     @Test
-    public void showThrowWhenNumberIsBiggerSeventyEight(){
-        assertThrows(BadRequestException.class,
-                () -> sequenceService.getSequenceByNumber(79));
+    public void getSequenceNumberTen(){
+        Sequence sequence = new Sequence(10);
+        assertEquals(9, sequence.getNumberCalculated());
     }
 
     @Test
-    public void showThrowWhenNumberIsLowerZero(){
+    public void showMessage_whenNumberIsBiggerSeventyEight_thenBadRequestException(){
         assertThrows(BadRequestException.class,
-                () -> sequenceService.getSequenceByNumber(-1));
+                () -> new Sequence(79));
+    }
+
+    @Test
+    public void showMessage_whenNumberIsLowerZero_thenBadRequestException(){
+        assertThrows(BadRequestException.class,
+                () -> new Sequence(-1));
     }
 
 }
