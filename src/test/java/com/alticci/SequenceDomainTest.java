@@ -2,14 +2,12 @@ package com.alticci;
 
 import com.alticci.domain.Sequence;
 import com.alticci.exception.BadRequestException;
-import com.alticci.service.SequenceService;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class SequenceServiceTest {
+public class SequenceDomainTest {
 
     @Test
     public void getSequenceNumberZero(){
