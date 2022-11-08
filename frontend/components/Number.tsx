@@ -9,6 +9,11 @@ const Number = () => {
     const checkNumber = async (e: any) => {
         e.preventDefault();
 
+        if(String(index).trim().length == 0){
+            alert("Input a number, please! Between zero and seventy eight.");
+            return false;
+        }
+
         if(index < 0 || index > 78){
             alert("Input the correct number, please! Between zero and seventy eight.");
             return false;
@@ -36,7 +41,7 @@ const Number = () => {
                 <div className='col-span-6 sm:col-span-3'>
                     <label className='block text-gray-600 text-sm font-normal'>Number</label>
                     <input
-                        type="text"
+                        type="number"
                         name="number"
                         min="0"
                         max="78"
@@ -54,7 +59,7 @@ const Number = () => {
             <button 
                 onClick={checkNumber}
                 className='rounded bg-green-400 hover:bg-green-800 text-white px-6 py-2 font-semibold'>
-                Check
+                CHECK
             </button>
 
         </div>
