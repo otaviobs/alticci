@@ -1,10 +1,28 @@
 version: '3'
 
 services:
-  app:
-    container_name: alticci-sequence
-    image: alticci-sequence
+  back:
+    container_name: api-sequence
+    image: api-sequence
     build:
-      context: .
+      context: ./backend/.
     ports:
       - 8081:8081
+    networks:
+      - alticciNet
+
+  front:
+    build:
+      context: ./frontend/.
+    image: alticci-ui
+    container_name: alticci-ui
+    ports:
+      - 3000:3000
+    depends_on:
+      - back
+    networks:
+      - alticciNet
+
+networks:
+  alticciNet:
+    driver: bridge
